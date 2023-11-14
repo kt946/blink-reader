@@ -1,6 +1,7 @@
 import { ThemeProvider } from '@/components/theme-provider';
-import { ModeToggle } from '@/components/mode-toggle';
 import { Button } from '@/components/ui/button';
+
+import Navbar from '@/components/navbar';
 
 function App() {
   return (
@@ -9,11 +10,14 @@ function App() {
         defaultTheme="system"
         storageKey="vite-ui-theme"
       >
-        <h1 className="text-4xl text-blue-700 font-bold underline">Hello world!</h1>
-        <div>
-          <Button>Click me</Button>
-          <ModeToggle />
-        </div>
+        <Navbar />
+
+        {/* set height to screen height - 57px */}
+        <main className="h-full py-6">
+          <div className="container flex justify-center">
+            <Button>Click me</Button>
+          </div>
+        </main>
       </ThemeProvider>
     </>
   );
