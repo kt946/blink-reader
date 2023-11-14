@@ -1,4 +1,5 @@
 import { ModeToggle } from '@/components/mode-toggle';
+import GithubButton from '@/components/github-button';
 
 const Navbar = () => {
   return (
@@ -6,8 +7,9 @@ const Navbar = () => {
       <div className="container flex justify-between h-14 items-center">
         <h1 className="text-3xl text-blue-700 font-bold">QuantumQuill</h1>
 
-        <div>
+        <div className="flex items-center gap-2">
           <ModeToggle />
+          <GithubButton />
         </div>
       </div>
     </header>

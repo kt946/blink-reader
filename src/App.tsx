@@ -2,6 +2,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Button } from '@/components/ui/button';
 
 import Navbar from '@/components/navbar';
+import Footer from '@/components/footer';
 
 function App() {
   return (
@@ -12,12 +13,13 @@ function App() {
       >
         <Navbar />
 
-        {/* set height to screen height - 57px */}
-        <main className="h-full py-6">
+        <main className="h-full py-6 flex-1 border-b">
           <div className="container flex justify-center">
             <Button>Click me</Button>
           </div>
         </main>
+
+        <Footer />
       </ThemeProvider>
     </>
   );
