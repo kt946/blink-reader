@@ -87,6 +87,6 @@ body,
     @apply bg-background text-foreground;
   }
   #root {
-    @apply relative flex flex-col h-screen overflow-hidden;
+    @apply relative flex flex-col min-h-screen overflow-hidden overflow-y-auto;
   }
 }
