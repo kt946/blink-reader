@@ -13,7 +13,7 @@ function App() {
       >
         <Navbar />
 
-        <main className="h-full py-6 flex-1 border-b">
+        <main className="h-full py-6 flex-1 border-b bg-slate-100 dark:bg-black">
           <div className="container flex justify-center">
             <Button>Click me</Button>
           </div>
