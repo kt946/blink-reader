@@ -17,11 +17,16 @@ import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Textarea } from '@/components/ui/textarea';
 
+type TextareaFormDialogProps = {
+  setReadingInterface: (value: boolean) => void;
+  setReadingText: (value: string) => void;
+};
+
 const FormSchema = z.object({
   text: z.string({ required_error: 'Text is required' }).trim(),
 });
 
-const TextareaFormDialog = () => {
+const TextareaFormDialog = ({ setReadingInterface, setReadingText }: TextareaFormDialogProps) => {
   const [open, setOpen] = useState(false);
 
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -33,6 +38,8 @@ const TextareaFormDialog = () => {
       // const text = JSON.stringify(data, null, 2);
       console.log(data);
       setOpen(false);
+      setReadingText(data.text);
+      setReadingInterface(true);
     }
   }
 
