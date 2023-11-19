@@ -31,9 +31,6 @@ class TextHandler {
       result.push(chunk);
     }
 
-    // Testing output
-    console.log(result);
-
     return result;
   }
 }
