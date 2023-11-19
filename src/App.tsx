@@ -6,9 +6,12 @@ import Footer from '@/components/footer';
 import TextareaFormDialog from '@/components/text-form-dialog';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 
+import TextHandler from '@/lib/textHandler';
+
 function App() {
   const [readingInterface, setReadingInterface] = useState(false);
   const [readingText, setReadingText] = useState('');
+  const textHandler = new TextHandler(readingText, 2);
 
   return (
     <>
@@ -38,12 +41,14 @@ function App() {
               </section>
             ) : (
               // Speed Reading UI
-              <Card className="h-96 sm:h-[calc(100vh-203px)] dark:bg-zinc-900 flex flex-col justify-between">
+              <Card className="h-96 sm:min-h-[calc(100vh-203px)] dark:bg-zinc-900 flex flex-col justify-between">
                 <CardHeader>
                   <p>Card Header</p>
                 </CardHeader>
-                <CardContent className='p-0 my-12'>
-                  <p className="text-center text-5xl font-semibold">{readingText.split(' ')[0]}</p>
+                <CardContent className="p-0 my-12">
+                  <p className="text-center text-2xl sm:text-3xl md:text-4xl lg-text-5xl font-semibold">
+                    {textHandler.wordGroups[0]}
+                  </p>
                 </CardContent>
                 <CardFooter>
                   <p>Card Footer</p>
