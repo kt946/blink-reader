@@ -76,14 +76,14 @@ const TextareaFormDialog = ({ setReadingInterface, setReadingText }: TextareaFor
                       placeholder="Paste the text you'd like to speed read here"
                       rows={10}
                       {...field}
-                      className="h-96"
+                      className="sm:h-96"
                     />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <DialogFooter className="flex flex-row gap-6">
+            <DialogFooter className="flex flex-row gap-2">
               <DialogClose
                 asChild
                 className="w-full"

@@ -6,18 +6,22 @@ import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
 
 import TextHandler from '@/lib/textHandler';
+import SettingsDialog from './settings-dialog';
 
 type TextPlayerProps = {
   readingText: string;
 };
 
 const TextPlayer = ({ readingText }: TextPlayerProps) => {
-  const textHandler = new TextHandler(readingText, 2);
+  const [wordsAtATime, setWordsAtATime] = useState(1);
+  const [wordsPerMinute, setWordsPerMinute] = useState(300);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [index, setIndex] = useState(0);
+
+  const textHandler = new TextHandler(readingText, wordsAtATime);
   const wordGroups = textHandler.wordGroups;
   const wordGroupLength = wordGroups.length;
 
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [index, setIndex] = useState(0);
   const [currentText, setCurrentText] = useState(wordGroups[index]);
 
   // Play text
@@ -50,12 +54,16 @@ const TextPlayer = ({ readingText }: TextPlayerProps) => {
 
   // useEffect for updating current text display when index changes
   useEffect(() => {
+    if (index > wordGroupLength) {
+      setIndex(wordGroupLength - 1);
+    }
     setCurrentText(wordGroups[index]);
-  }, [index, wordGroups]);
+  }, [index, wordGroups, wordGroupLength]);
 
   // useEffect for playing text
   useEffect(() => {
     let intervalId: NodeJS.Timeout | null = null;
+    const intervalTime = 60000 / wordsPerMinute;
 
     const playHandler = () => {
       if (index < wordGroupLength - 1 && isPlaying) {
@@ -66,7 +74,7 @@ const TextPlayer = ({ readingText }: TextPlayerProps) => {
     };
 
     if (isPlaying) {
-      intervalId = setInterval(playHandler, 300); // Adjust the interval time as needed (in milliseconds)
+      intervalId = setInterval(playHandler, intervalTime);
     }
 
     return () => {
@@ -74,19 +82,35 @@ const TextPlayer = ({ readingText }: TextPlayerProps) => {
         clearInterval(intervalId);
       }
     };
-  }, [index, isPlaying, wordGroupLength]);
+  }, [index, isPlaying, wordGroupLength, wordsPerMinute]);
 
   return (
-    <Card className="h-96 sm:min-h-[calc(100vh-203px)] flex flex-col justify-between dark:bg-zinc-900">
-      <CardHeader>
-        <p className="text-xl font-bold">{index}</p>
+    <Card className="min-h-[calc(100vh-174px)] md:min-h-[calc(100vh-203px)] flex flex-col justify-between dark:bg-zinc-900 overflow-hidden">
+      <CardHeader className="flex flex-row justify-between items-center">
+        <div className="flex gap-6 text-sm sm:text-lg text-muted-foreground">
+          <p>
+            WPM: <span className="font-bold text-primary">{wordsPerMinute}</span>
+          </p>
+          <p>
+            Chunk size: <span className="font-bold text-primary">{wordsAtATime}</span>
+          </p>
+          <p>
+            Index: <span className="font-bold text-primary">{index}</span>
+          </p>
+        </div>
+        <div>
+          <SettingsDialog
+            setWordsAtATime={setWordsAtATime}
+            setWordsPerMinute={setWordsPerMinute}
+          />
+        </div>
       </CardHeader>
       {/* Reading Content */}
-      <CardContent className="p-0 my-12">
-        <p className="text-center text-2xl sm:text-3xl md:text-4xl lg-text-5xl font-semibold">{currentText}</p>
+      <CardContent className="p-0 my-12 overflow-hidden">
+        <p className="text-center text-2xl sm:text-3xl md:text-4xl lg-text-5xl font-semibold p-2">{currentText}</p>
       </CardContent>
       {/* Player Controls */}
-      <CardFooter className="flex flex-col justify-center items-center gap-4 sm:gap-8">
+      <CardFooter className="flex flex-col justify-center items-center mt-4 gap-8">
         {/* Player Slider */}
         <Slider
           defaultValue={[0]}
@@ -100,7 +124,6 @@ const TextPlayer = ({ readingText }: TextPlayerProps) => {
         {/* Player Button Group */}
         <div className="flex justify-center items-center gap-6 text-zinc-600 dark:text-primary">
           <Button
-            type="button"
             variant="ghost"
             size="lg"
             onClick={() => back()}
@@ -109,7 +132,6 @@ const TextPlayer = ({ readingText }: TextPlayerProps) => {
           </Button>
           {isPlaying ? (
             <Button
-              type="button"
               variant="ghost"
               size="lg"
               onClick={() => pause()}
@@ -118,7 +140,6 @@ const TextPlayer = ({ readingText }: TextPlayerProps) => {
             </Button>
           ) : (
             <Button
-              type="button"
               variant="ghost"
               size="lg"
               onClick={() => play()}
@@ -126,9 +147,7 @@ const TextPlayer = ({ readingText }: TextPlayerProps) => {
               <FaPlay className="h-6 w-6" />
             </Button>
           )}
-
           <Button
-            type="button"
             variant="ghost"
             size="lg"
             onClick={() => next()}
