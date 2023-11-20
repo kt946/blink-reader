@@ -86,7 +86,7 @@ const TextPlayer = ({ readingText }: TextPlayerProps) => {
         <p className="text-center text-2xl sm:text-3xl md:text-4xl lg-text-5xl font-semibold">{currentText}</p>
       </CardContent>
       {/* Player Controls */}
-      <CardFooter className="flex flex-col justify-center items-center gap-8 sm:gap-10">
+      <CardFooter className="flex flex-col justify-center items-center gap-4 sm:gap-8">
         {/* Player Slider */}
         <Slider
           defaultValue={[0]}
@@ -98,14 +98,14 @@ const TextPlayer = ({ readingText }: TextPlayerProps) => {
         />
 
         {/* Player Button Group */}
-        <div className="flex justify-center items-center gap-6">
+        <div className="flex justify-center items-center gap-6 text-zinc-600 dark:text-primary">
           <Button
             type="button"
             variant="ghost"
             size="lg"
             onClick={() => back()}
           >
-            <FaBackward className="h-5 w-5" />
+            <FaBackward className="h-6 w-6" />
           </Button>
           {isPlaying ? (
             <Button
@@ -114,7 +114,7 @@ const TextPlayer = ({ readingText }: TextPlayerProps) => {
               size="lg"
               onClick={() => pause()}
             >
-              <FaPause className="h-5 w-5" />
+              <FaPause className="h-6 w-6" />
             </Button>
           ) : (
             <Button
@@ -123,7 +123,7 @@ const TextPlayer = ({ readingText }: TextPlayerProps) => {
               size="lg"
               onClick={() => play()}
             >
-              <FaPlay className="h-5 w-5" />
+              <FaPlay className="h-6 w-6" />
             </Button>
           )}
 
@@ -133,7 +133,7 @@ const TextPlayer = ({ readingText }: TextPlayerProps) => {
             size="lg"
             onClick={() => next()}
           >
-            <FaForward className="h-5 w-5" />
+            <FaForward className="h-6 w-6" />
           </Button>
         </div>
       </CardFooter>
