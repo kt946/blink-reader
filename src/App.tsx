@@ -8,7 +8,7 @@ import TextPlayer from '@/components/text-player';
 
 function App() {
   const [readingInterface, setReadingInterface] = useState(false);
-  const [readingText, setReadingText] = useState('');
+  const [textInput, setTextInput] = useState('');
 
   return (
     <>
@@ -34,12 +34,12 @@ function App() {
                 </p>
                 <TextareaFormDialog
                   setReadingInterface={setReadingInterface}
-                  setReadingText={setReadingText}
+                  setTextInput={setTextInput}
                 />
               </section>
             ) : (
               // Text Player
-              <TextPlayer readingText={readingText} />
+              <TextPlayer textInput={textInput} />
             )}
           </div>
         </main>

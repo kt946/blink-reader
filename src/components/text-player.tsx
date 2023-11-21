@@ -9,19 +9,21 @@ import TextHandler from '@/lib/textHandler';
 import SettingsDialog from './settings-dialog';
 
 type TextPlayerProps = {
-  readingText: string;
+  textInput: string;
 };
 
-const TextPlayer = ({ readingText }: TextPlayerProps) => {
+const TextPlayer = ({ textInput }: TextPlayerProps) => {
   const [wordsAtATime, setWordsAtATime] = useState(1);
   const [wordsPerMinute, setWordsPerMinute] = useState(300);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [index, setIndex] = useState(0);
+  const [fontFamily, setFontFamily] = useState('');
+  // const [fontSize, setFontSize] = useState(16);
 
-  const textHandler = new TextHandler(readingText, wordsAtATime);
+  const textHandler = new TextHandler(textInput, wordsAtATime);
   const wordGroups = textHandler.wordGroups;
   const wordGroupLength = wordGroups.length;
 
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [index, setIndex] = useState(0);
   const [currentText, setCurrentText] = useState(wordGroups[index]);
 
   // Play text
@@ -69,7 +71,7 @@ const TextPlayer = ({ readingText }: TextPlayerProps) => {
       if (index < wordGroupLength - 1 && isPlaying) {
         setIndex((prevIndex) => prevIndex + 1);
       } else {
-        setIsPlaying(false);
+        pause();
       }
     };
 
@@ -102,12 +104,15 @@ const TextPlayer = ({ readingText }: TextPlayerProps) => {
           <SettingsDialog
             setWordsAtATime={setWordsAtATime}
             setWordsPerMinute={setWordsPerMinute}
+            setFontFamily={setFontFamily}
           />
         </div>
       </CardHeader>
       {/* Reading Content */}
       <CardContent className="p-0 my-12 overflow-hidden">
-        <p className="text-center text-2xl sm:text-3xl md:text-4xl lg-text-5xl font-semibold p-2">{currentText}</p>
+        <p className={`text-center text-2xl sm:text-3xl md:text-4xl lg-text-5xl font-semibold p-2 ${fontFamily}`}>
+          {currentText}
+        </p>
       </CardContent>
       {/* Player Controls */}
       <CardFooter className="flex flex-col justify-center items-center mt-4 gap-8">

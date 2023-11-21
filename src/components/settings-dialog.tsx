@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { FaCog } from 'react-icons/fa';
+import { Check, ChevronsUpDown } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
@@ -15,20 +16,28 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-// import { Label } from '@/components/ui/label';
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from '@/components/ui/command';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form';
+import { ScrollArea } from '@/components/ui/scroll-area';
+
+import { cn } from '@/lib/utils';
+import { fontFamilyList } from '@/constants';
 
 interface SettingsDialogProps {
   setWordsAtATime: (wordsAtATime: number) => void;
   setWordsPerMinute: (wordsPerMinute: number) => void;
+  setFontFamily: (fontFamily: string) => void;
 }
 
-const SettingsDialog = ({ setWordsAtATime, setWordsPerMinute }: SettingsDialogProps) => {
+const SettingsDialog = ({ setWordsAtATime, setWordsPerMinute, setFontFamily }: SettingsDialogProps) => {
   const [open, setOpen] = useState(false);
+  const [openPopover, setOpenPopover] = useState(false);
 
   const FormSchema = z.object({
-    wordsAtATime: z.string({ required_error: 'Words at a time is required' }).trim(),
-    wordsPerMinute: z.string({ required_error: 'Words per minute is required' }).trim(),
+    wordsAtATime: z.string(),
+    wordsPerMinute: z.string(),
+    fontFamily: z.string(),
   });
 
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -36,6 +45,7 @@ const SettingsDialog = ({ setWordsAtATime, setWordsPerMinute }: SettingsDialogPr
     defaultValues: {
       wordsAtATime: '1',
       wordsPerMinute: '300',
+      fontFamily: 'font-sans',
     },
   });
 
@@ -45,6 +55,7 @@ const SettingsDialog = ({ setWordsAtATime, setWordsPerMinute }: SettingsDialogPr
 
     setWordsAtATime(parseInt(values.wordsAtATime));
     setWordsPerMinute(parseInt(values.wordsPerMinute));
+    setFontFamily(values.fontFamily);
     setOpen(false);
   };
 
@@ -73,7 +84,7 @@ const SettingsDialog = ({ setWordsAtATime, setWordsPerMinute }: SettingsDialogPr
             className="w-full flex flex-col space-y-6"
           >
             <div className="w-full flex gap-2">
-              {/* Words per minute - WPM*/}
+              {/* Words per minute - WPM */}
               <FormField
                 control={form.control}
                 name="wordsPerMinute"
@@ -130,17 +141,87 @@ const SettingsDialog = ({ setWordsAtATime, setWordsPerMinute }: SettingsDialogPr
                 )}
               />
             </div>
+            <div className="w-full flex gap-2">
+              {/* Font Family*/}
+              <FormField
+                control={form.control}
+                name="fontFamily"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col flex-1">
+                    <FormLabel>Font</FormLabel>
+                    <Popover
+                      modal={true}
+                      open={openPopover}
+                      onOpenChange={setOpenPopover}
+                    >
+                      <PopoverTrigger asChild>
+                        <FormControl>
+                          <Button
+                            variant="outline"
+                            role="combobox"
+                            className={cn('w-[200px] justify-between', !field.value && 'text-muted-foreground')}
+                          >
+                            {field.value
+                              ? fontFamilyList.find((font) => font.value === field.value)?.label
+                              : 'Select font'}
+                            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                          </Button>
+                        </FormControl>
+                      </PopoverTrigger>
+                      <PopoverContent
+                        align="start"
+                        className="w-[300px] p-0"
+                      >
+                        <Command>
+                          <CommandInput placeholder="Search fonts" />
+                          <CommandEmpty>No font found.</CommandEmpty>
+                          <CommandGroup>
+                            <ScrollArea className="h-[250px]">
+                              {fontFamilyList.map((font) => (
+                                <CommandItem
+                                  value={font.label}
+                                  key={font.value}
+                                  onSelect={() => {
+                                    form.setValue('fontFamily', font.value);
+                                    setOpenPopover(false);
+                                  }}
+                                >
+                                  <Check
+                                    className={cn(
+                                      'mr-2 h-4 w-4',
+                                      font.value === field.value ? 'opacity-100' : 'opacity-0'
+                                    )}
+                                  />
+                                  {font.label}
+                                </CommandItem>
+                              ))}
+                            </ScrollArea>
+                          </CommandGroup>
+                        </Command>
+                      </PopoverContent>
+                    </Popover>
+                  </FormItem>
+                )}
+              />
+
+              {/* Font size */}
+            </div>
             <DialogFooter className="flex flex-row sm:justify-end items-center max-sm:gap-2">
               <DialogClose asChild>
                 <Button
                   type="button"
                   variant="outline"
-                  className='max-sm:w-full'
+                  className="max-sm:w-full"
                 >
                   Cancel
                 </Button>
               </DialogClose>
-              <Button type="submit" className='max-sm:w-full'>Save Changes</Button>
+              <Button
+                type="submit"
+                className="max-sm:w-full"
+              >
+                Save Changes
+              </Button>
             </DialogFooter>
           </form>
         </Form>

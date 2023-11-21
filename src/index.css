@@ -1,3 +1,6 @@
+/* Font Families */
+@import url('font-family.css');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
