@@ -18,6 +18,7 @@ export const authorLinks: AuthorLinks = {
 export const fontFamilyList: FontFamilyList = [
   { label: 'Default', value: 'font-sans' },
   { label: 'Serif', value: 'font-serif' },
+  { label: 'Mono', value: 'font-mono' },
   { label: 'Roboto', value: 'font-roboto' },
   { label: 'Open Sans', value: 'font-openSans' },
   { label: 'Inter', value: 'font-inter' },
@@ -32,4 +33,5 @@ export const fontFamilyList: FontFamilyList = [
   { label: 'Raleway', value: 'font-raleway' },
   { label: 'Palanquin', value: 'font-palanquin' },
   { label: 'Playfair', value: 'font-playfair' },
+  { label: 'Times New Roman', value: 'font-timesNewRoman' },
 ];

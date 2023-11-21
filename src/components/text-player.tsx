@@ -15,8 +15,9 @@ type TextPlayerProps = {
 const TextPlayer = ({ textInput }: TextPlayerProps) => {
   const [wordsAtATime, setWordsAtATime] = useState(1);
   const [wordsPerMinute, setWordsPerMinute] = useState(300);
-  const [fontFamily, setFontFamily] = useState('');
-  // const [fontSize, setFontSize] = useState(16);
+  const [fontFamily, setFontFamily] = useState('font-sans');
+  const [fontWeight, setFontWeight] = useState('font-normal');
+  const [fontSize, setFontSize] = useState('text-5xl');
 
   const textHandler = new TextHandler(textInput, wordsAtATime);
   const wordGroups = textHandler.wordGroups;
@@ -105,14 +106,14 @@ const TextPlayer = ({ textInput }: TextPlayerProps) => {
             setWordsAtATime={setWordsAtATime}
             setWordsPerMinute={setWordsPerMinute}
             setFontFamily={setFontFamily}
+            setFontWeight={setFontWeight}
+            setFontSize={setFontSize}
           />
         </div>
       </CardHeader>
       {/* Reading Content */}
       <CardContent className="p-0 my-12 overflow-hidden">
-        <p className={`text-center text-2xl sm:text-3xl md:text-4xl lg-text-5xl font-semibold p-2 ${fontFamily}`}>
-          {currentText}
-        </p>
+        <p className={`text-center p-2 ${fontFamily} ${fontWeight} ${fontSize}`}>{currentText}</p>
       </CardContent>
       {/* Player Controls */}
       <CardFooter className="flex flex-col justify-center items-center mt-4 gap-8">

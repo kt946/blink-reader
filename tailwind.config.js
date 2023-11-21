@@ -30,7 +30,8 @@ module.exports = {
         oswald: ['Oswald', 'sans-serif'],
         raleway: ['Raleway', 'sans-serif'],
         palanquin: ['Palanquin', 'sans-serif'],
-        playfair: ['Playfair', 'sans-serif'],
+        playfair: ['Playfair', 'serif'],
+        timesNewRoman: ['Times New Roman', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",

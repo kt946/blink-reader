@@ -28,9 +28,17 @@ interface SettingsDialogProps {
   setWordsAtATime: (wordsAtATime: number) => void;
   setWordsPerMinute: (wordsPerMinute: number) => void;
   setFontFamily: (fontFamily: string) => void;
+  setFontWeight: (fontStyle: string) => void;
+  setFontSize: (fontSize: string) => void;
 }
 
-const SettingsDialog = ({ setWordsAtATime, setWordsPerMinute, setFontFamily }: SettingsDialogProps) => {
+const SettingsDialog = ({
+  setWordsAtATime,
+  setWordsPerMinute,
+  setFontFamily,
+  setFontWeight,
+  setFontSize,
+}: SettingsDialogProps) => {
   const [open, setOpen] = useState(false);
   const [openPopover, setOpenPopover] = useState(false);
 
@@ -38,6 +46,8 @@ const SettingsDialog = ({ setWordsAtATime, setWordsPerMinute, setFontFamily }: S
     wordsAtATime: z.string(),
     wordsPerMinute: z.string(),
     fontFamily: z.string(),
+    fontWeight: z.string(),
+    fontSize: z.string(),
   });
 
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -46,6 +56,8 @@ const SettingsDialog = ({ setWordsAtATime, setWordsPerMinute, setFontFamily }: S
       wordsAtATime: '1',
       wordsPerMinute: '300',
       fontFamily: 'font-sans',
+      fontWeight: 'font-normal',
+      fontSize: 'text-5xl',
     },
   });
 
@@ -56,6 +68,8 @@ const SettingsDialog = ({ setWordsAtATime, setWordsPerMinute, setFontFamily }: S
     setWordsAtATime(parseInt(values.wordsAtATime));
     setWordsPerMinute(parseInt(values.wordsPerMinute));
     setFontFamily(values.fontFamily);
+    setFontWeight(values.fontWeight);
+    setFontSize(values.fontSize);
     setOpen(false);
   };
 
@@ -141,7 +155,8 @@ const SettingsDialog = ({ setWordsAtATime, setWordsPerMinute, setFontFamily }: S
                 )}
               />
             </div>
-            <div className="w-full flex gap-2">
+
+            <div className="w-full flex">
               {/* Font Family*/}
               <FormField
                 control={form.control}
@@ -159,7 +174,7 @@ const SettingsDialog = ({ setWordsAtATime, setWordsPerMinute, setFontFamily }: S
                           <Button
                             variant="outline"
                             role="combobox"
-                            className={cn('w-[200px] justify-between', !field.value && 'text-muted-foreground')}
+                            className={cn('w-full justify-between', !field.value && 'text-muted-foreground')}
                           >
                             {field.value
                               ? fontFamilyList.find((font) => font.value === field.value)?.label
@@ -170,7 +185,7 @@ const SettingsDialog = ({ setWordsAtATime, setWordsPerMinute, setFontFamily }: S
                       </PopoverTrigger>
                       <PopoverContent
                         align="start"
-                        className="w-[300px] p-0"
+                        className="w-full sm:w-[376px] p-0"
                       >
                         <Command>
                           <CommandInput placeholder="Search fonts" />
@@ -192,7 +207,12 @@ const SettingsDialog = ({ setWordsAtATime, setWordsPerMinute, setFontFamily }: S
                                       font.value === field.value ? 'opacity-100' : 'opacity-0'
                                     )}
                                   />
-                                  {font.label}
+                                  <div className="w-full flex overflow-hidden items-center">
+                                    <p className="flex-1">{font.label}</p>
+                                    <span className={`flex-1 text-start text-xl truncate ${font.value}`}>
+                                      {font.label}
+                                    </span>
+                                  </div>
                                 </CommandItem>
                               ))}
                             </ScrollArea>
@@ -203,8 +223,63 @@ const SettingsDialog = ({ setWordsAtATime, setWordsPerMinute, setFontFamily }: S
                   </FormItem>
                 )}
               />
+            </div>
 
+            <div className="w-full flex gap-2">
+              {/* Font weight */}
+              <FormField
+                control={form.control}
+                name="fontWeight"
+                render={({ field }) => (
+                  <FormItem className="flex-1">
+                    <FormLabel>Font Weight</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger className="sm:w-[180px]">
+                          <SelectValue placeholder="300" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="font-normal">Regular</SelectItem>
+                        <SelectItem value="font-medium">Medium</SelectItem>
+                        <SelectItem value="font-semibold">Semibold</SelectItem>
+                        <SelectItem value="font-bold">Bold</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </FormItem>
+                )}
+              />
               {/* Font size */}
+              <FormField
+                control={form.control}
+                name="fontSize"
+                render={({ field }) => (
+                  <FormItem className="flex-1">
+                    <FormLabel>Font Size</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger className="sm:w-[180px]">
+                          <SelectValue placeholder="300" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="text-2xl">24</SelectItem>
+                        <SelectItem value="text-3xl">30</SelectItem>
+                        <SelectItem value="text-4xl">36</SelectItem>
+                        <SelectItem value="text-5xl">48</SelectItem>
+                        <SelectItem value="text-6xl">60</SelectItem>
+                        <SelectItem value="text-7xl">72</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </FormItem>
+                )}
+              />
             </div>
             <DialogFooter className="flex flex-row sm:justify-end items-center max-sm:gap-2">
               <DialogClose asChild>
