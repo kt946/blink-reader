@@ -7,12 +7,14 @@ import { Slider } from '@/components/ui/slider';
 
 import TextHandler from '@/lib/textHandler';
 import SettingsDialog from './settings-dialog';
+import TextareaFormDialog from './text-form-dialog';
 
 type TextPlayerProps = {
   textInput: string;
+  setTextInput: (value: string) => void;
 };
 
-const TextPlayer = ({ textInput }: TextPlayerProps) => {
+const TextPlayer = ({ textInput, setTextInput }: TextPlayerProps) => {
   const [wordsAtATime, setWordsAtATime] = useState(1);
   const [wordsPerMinute, setWordsPerMinute] = useState(300);
   const [fontFamily, setFontFamily] = useState('font-sans');
@@ -101,7 +103,20 @@ const TextPlayer = ({ textInput }: TextPlayerProps) => {
             Index: <span className="font-bold text-primary">{index}</span>
           </p>
         </div>
-        <div>
+        <div className="flex items-center gap-4">
+          {/* Edit Text Form */}
+          <TextareaFormDialog
+            setTextInput={setTextInput}
+            btnLabel="Edit Text"
+            btnSize="sm"
+            btnVariant="secondary"
+            formTitle="Edit Text"
+            textInput={textInput}
+            index={index}
+            back={back}
+          />
+
+          {/* Settings Form */}
           <SettingsDialog
             setWordsAtATime={setWordsAtATime}
             setWordsPerMinute={setWordsPerMinute}
@@ -129,6 +144,7 @@ const TextPlayer = ({ textInput }: TextPlayerProps) => {
 
         {/* Player Button Group */}
         <div className="flex justify-center items-center gap-6 text-zinc-600 dark:text-primary">
+          {/* Back */}
           <Button
             variant="ghost"
             size="lg"
@@ -137,6 +153,7 @@ const TextPlayer = ({ textInput }: TextPlayerProps) => {
             <FaBackward className="h-6 w-6" />
           </Button>
           {isPlaying ? (
+            // Pause
             <Button
               variant="ghost"
               size="lg"
@@ -145,6 +162,7 @@ const TextPlayer = ({ textInput }: TextPlayerProps) => {
               <FaPause className="h-6 w-6" />
             </Button>
           ) : (
+            // Play
             <Button
               variant="ghost"
               size="lg"
@@ -153,6 +171,7 @@ const TextPlayer = ({ textInput }: TextPlayerProps) => {
               <FaPlay className="h-6 w-6" />
             </Button>
           )}
+          {/* Foward */}
           <Button
             variant="ghost"
             size="lg"

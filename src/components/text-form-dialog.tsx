@@ -18,28 +18,62 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from '@/component
 import { Textarea } from '@/components/ui/textarea';
 
 type TextareaFormDialogProps = {
-  setReadingInterface: (value: boolean) => void;
+  setReadingInterface?: (value: boolean) => void;
   setTextInput: (value: string) => void;
+  btnLabel: string;
+  btnSize?: 'sm' | 'default' | 'lg' | 'icon' | null | undefined;
+  btnVariant?: 'default' | 'secondary' | 'link' | 'destructive' | 'outline' | 'ghost' | null | undefined;
+  formTitle: string;
+  textInput?: string;
+  index?: number;
+  back?: () => void;
 };
 
 const FormSchema = z.object({
   text: z.string({ required_error: 'Text is required' }).trim(),
 });
 
-const TextareaFormDialog = ({ setReadingInterface, setTextInput }: TextareaFormDialogProps) => {
+const TextareaFormDialog = ({
+  setReadingInterface,
+  setTextInput,
+  btnLabel,
+  btnSize,
+  btnVariant,
+  formTitle,
+  textInput,
+  index,
+  back,
+}: TextareaFormDialogProps) => {
   const [open, setOpen] = useState(false);
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
+    defaultValues: {
+      text: textInput,
+    },
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     if (data.text) {
-      // const text = JSON.stringify(data, null, 2);
-      console.log(data);
-      setOpen(false);
+      // Set text input to data from form
       setTextInput(data.text);
-      setReadingInterface(true);
+
+      // Reset index to 0 if index is not 0 and both index and back() are passed as props
+      // This is used to reset the text player to the beginning when a new text is submitted
+      // If the length of new text is shorter than the length of the previous text, this will prevent the text player from breaking
+      if (index && back && index !== 0) {
+        back();
+      }
+
+      // Close dialog
+      setOpen(false);
+
+      // Set reading interface to true if setReadingInterface is passed as a prop
+      // This is used to toggle between the hero and the text player on the home page
+      // If user is already on the text player, this will not do anything
+      if (setReadingInterface) {
+        setReadingInterface(true);
+      }
     }
   }
 
@@ -50,16 +84,16 @@ const TextareaFormDialog = ({ setReadingInterface, setTextInput }: TextareaFormD
     >
       <DialogTrigger asChild>
         <Button
-          variant="default"
-          size="lg"
+          variant={btnVariant}
+          size={btnSize}
           className="w-full sm:w-fit"
         >
-          Get Started
+          {btnLabel}
         </Button>
       </DialogTrigger>
       <DialogContent className="dark:bg-zinc-900 max-w-6xl">
         <DialogHeader>
-          <DialogTitle>Add Text</DialogTitle>
+          <DialogTitle>{formTitle}</DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form
@@ -83,10 +117,10 @@ const TextareaFormDialog = ({ setReadingInterface, setTextInput }: TextareaFormD
                 </FormItem>
               )}
             />
-            <DialogFooter className="flex flex-row gap-2">
+            <DialogFooter className="flex flex-row gap-1">
               <DialogClose
                 asChild
-                className="w-full"
+                className="max-sm:w-full"
               >
                 <Button
                   type="button"
@@ -97,7 +131,7 @@ const TextareaFormDialog = ({ setReadingInterface, setTextInput }: TextareaFormD
               </DialogClose>
               <Button
                 type="submit"
-                className="w-full"
+                className="max-sm:w-full"
               >
                 Submit
               </Button>

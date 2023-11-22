@@ -281,11 +281,11 @@ const SettingsDialog = ({
                 )}
               />
             </div>
-            <DialogFooter className="flex flex-row sm:justify-end items-center max-sm:gap-2">
+            <DialogFooter className="flex flex-row sm:justify-end items-center gap-1">
               <DialogClose asChild>
                 <Button
                   type="button"
-                  variant="outline"
+                  variant="secondary"
                   className="max-sm:w-full"
                 >
                   Cancel

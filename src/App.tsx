@@ -32,14 +32,22 @@ function App() {
                   empowers users to conquer mountains of text in the blink of an eye. Say farewell to sluggish
                   reading—embrace the swift journey through words with your trusty efficiency sidekick!
                 </p>
+
+                {/* Add Text Form */}
                 <TextareaFormDialog
                   setReadingInterface={setReadingInterface}
                   setTextInput={setTextInput}
+                  btnLabel="Get Started"
+                  btnSize="lg"
+                  formTitle="Add Text"
                 />
               </section>
             ) : (
               // Text Player
-              <TextPlayer textInput={textInput} />
+              <TextPlayer
+                textInput={textInput}
+                setTextInput={setTextInput}
+              />
             )}
           </div>
         </main>
