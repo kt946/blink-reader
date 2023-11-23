@@ -17,7 +17,7 @@ function App() {
           {/* Navbar */}
           <Navbar />
 
-          <main className="h-full sm:py-6 flex-1 border-b bg-slate-100 dark:bg-black">
+          <main className="h-full sm:py-6 flex-1 border-b bg-slate-100 dark:bg-background">
             <div className="sm:container flex flex-col">
               {/* Hero and TextPlayer are rendered based on state from SettingsProvider */}
               <Hero />

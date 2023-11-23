@@ -18,9 +18,10 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from '@/component
 import { Textarea } from '@/components/ui/textarea';
 
 type TextareaFormDialogProps = {
-  btnLabel: string;
+  btnLabel: string | JSX.Element;
   btnSize?: 'sm' | 'default' | 'lg' | 'icon' | null | undefined;
   btnVariant?: 'default' | 'secondary' | 'link' | 'destructive' | 'outline' | 'ghost' | null | undefined;
+  btnClassName?: string;
   formTitle: string;
 };
 
@@ -28,7 +29,7 @@ const FormSchema = z.object({
   text: z.string({ required_error: 'Text is required' }).trim(),
 });
 
-const TextareaFormDialog = ({ btnLabel, btnSize, btnVariant, formTitle }: TextareaFormDialogProps) => {
+const TextareaFormDialog = ({ btnLabel, btnSize, btnVariant, btnClassName, formTitle }: TextareaFormDialogProps) => {
   // Access state from SettingsProvider
   const { textInput, setTextInput, setReadingInterface } = useSettings();
   // State for dialog
@@ -63,7 +64,7 @@ const TextareaFormDialog = ({ btnLabel, btnSize, btnVariant, formTitle }: Textar
         <Button
           variant={btnVariant}
           size={btnSize}
-          className="w-full sm:w-fit"
+          className={`${btnClassName}`}
         >
           {btnLabel}
         </Button>

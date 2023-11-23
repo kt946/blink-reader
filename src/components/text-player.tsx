@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FaPlay, FaForward, FaBackward, FaPause } from 'react-icons/fa';
+import { FaPlay, FaForward, FaBackward, FaPause, FaEdit } from 'react-icons/fa';
 
 import { useSettings } from '@/components/settings-provider';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
@@ -87,15 +87,16 @@ const TextPlayer = () => {
   return (
     <>
       {readingInterface && (
-        <Card className="min-h-[calc(100vh-126px)] sm:min-h-[calc(100vh-176px)] md:min-h-[calc(100vh-203px)] max-sm:rounded-none max-sm:border-0 flex flex-col justify-between dark:bg-zinc-900 overflow-hidden">
-          <CardHeader className="flex flex-row justify-end items-center">
-            <div className="flex items-center gap-4">
+        <Card className="min-h-[calc(100vh-114px)] sm:min-h-[calc(100vh-178px)] md:min-h-[calc(100vh-203px)] max-sm:rounded-none border-0 flex flex-col justify-between dark:bg-zinc-900 overflow-hidden">
+          <CardHeader className="flex flex-row justify-end items-center max-sm:py-3">
+            <div className="flex items-center gap-2">
               {/* Edit Text Form */}
               <TextareaFormDialog
-                btnLabel="Edit Text"
-                btnSize="sm"
-                btnVariant="secondary"
+                btnLabel={<FaEdit className="h-6 w-6" />}
+                btnSize="icon"
+                btnVariant="ghost"
                 formTitle="Edit Text"
+                btnClassName="text-muted-foreground rounded-full"
               />
 
               {/* Settings Form */}
@@ -109,7 +110,7 @@ const TextPlayer = () => {
           </CardContent>
 
           {/* Player Controls */}
-          <CardFooter className="flex flex-col justify-center items-center mt-4 gap-1">
+          <CardFooter className="flex flex-col justify-center items-center mt-4 max-sm:py-3 gap-1">
             <div className="w-full">
               {/* Player Slider */}
               <Slider
@@ -128,7 +129,7 @@ const TextPlayer = () => {
             </div>
 
             {/* Player Controls */}
-            <div className="flex justify-center items-center gap-11 text-zinc-600 dark:text-muted-foreground  transition">
+            <div className="flex justify-center items-center gap-11 text-muted-foreground transition">
               {/* Back */}
               <Button
                 variant="ghost"

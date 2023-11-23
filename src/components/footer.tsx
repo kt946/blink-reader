@@ -1,11 +1,12 @@
 import { FaHeart } from 'react-icons/fa';
 
 import { authorLinks } from '@/constants';
+import GithubButton from './github-button';
 
 const Footer = () => {
   return (
-    <footer className="container py-6 md:py-0">
-      <div className="flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
+    <footer className="container max-sm:px-6 max-sm:py-2 py-4 md:py-0">
+      <div className="flex items-center justify-between gap-4 md:h-24">
         <p className="flex items-center text-muted-foreground text-sm">
           Made with <FaHeart className="mx-1" /> from
           <a
@@ -18,6 +19,7 @@ const Footer = () => {
           </a>
           .
         </p>
+        <GithubButton />
       </div>
     </footer>
   );

@@ -13,8 +13,9 @@ const GithubButton = () => {
       <Button
         variant="ghost"
         size="icon"
+        className='rounded-full'
       >
-        <FaGithub className="h-6 w-6 transition-all" />
+        <FaGithub className="h-6 w-6" />
       </Button>
     </a>
   );

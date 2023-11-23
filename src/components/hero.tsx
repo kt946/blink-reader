@@ -45,6 +45,7 @@ const Hero = () => {
             btnLabel="Get Started"
             btnSize="lg"
             formTitle="Add Text"
+            btnClassName="w-full sm:w-fit text-base"
           />
         </section>
       )}

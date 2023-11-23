@@ -1,6 +1,4 @@
 import { ModeToggle } from '@/components/mode-toggle';
-import GithubButton from '@/components/github-button';
-
 import { useTheme } from '@/components/theme-provider';
 
 import logoDark from '@/assets/blinkreader_logo_black.svg';
@@ -13,7 +11,7 @@ const Navbar = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="max-sm:px-4 sm:container flex justify-between h-14 items-center">
+      <div className="container max-sm:px-6 flex justify-between h-14 items-center">
         <a
           href="/"
           className="w-24 hover:opacity-70 transition-opacity"
@@ -31,10 +29,7 @@ const Navbar = () => {
           )}
         </a>
 
-        <div className="flex items-center gap-2">
-          <ModeToggle />
-          <GithubButton />
-        </div>
+        <ModeToggle />
       </div>
     </header>
   );
