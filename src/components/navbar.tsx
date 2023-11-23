@@ -8,6 +8,7 @@ import logoLight from '@/assets/blinkreader_logo_white.svg';
 
 const Navbar = () => {
   const { theme } = useTheme(); // Access the current theme from the context
+  // Check if the user's system is set to dark mode, and if so, return true
   const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
   return (

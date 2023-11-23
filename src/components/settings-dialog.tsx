@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
+import { useSettings } from '@/components/settings-provider';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -24,21 +25,20 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
 import { fontFamilyList } from '@/constants';
 
-interface SettingsDialogProps {
-  setWordsAtATime: (wordsAtATime: number) => void;
-  setWordsPerMinute: (wordsPerMinute: number) => void;
-  setFontFamily: (fontFamily: string) => void;
-  setFontWeight: (fontStyle: string) => void;
-  setFontSize: (fontSize: string) => void;
-}
-
-const SettingsDialog = ({
-  setWordsAtATime,
-  setWordsPerMinute,
-  setFontFamily,
-  setFontWeight,
-  setFontSize,
-}: SettingsDialogProps) => {
+const SettingsDialog = () => {
+  // Access state from SettingsProvider
+  const {
+    wordsAtATime,
+    setWordsAtATime,
+    wordsPerMinute,
+    setWordsPerMinute,
+    fontFamily,
+    setFontFamily,
+    fontWeight,
+    setFontWeight,
+    fontSize,
+    setFontSize,
+  } = useSettings();
   const [open, setOpen] = useState(false);
   const [openPopover, setOpenPopover] = useState(false);
 
@@ -53,14 +53,15 @@ const SettingsDialog = ({
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      wordsAtATime: '1',
-      wordsPerMinute: '300',
-      fontFamily: 'font-sans',
-      fontWeight: 'font-normal',
-      fontSize: 'text-5xl',
+      wordsAtATime: wordsAtATime.toString(),
+      wordsPerMinute: wordsPerMinute.toString(),
+      fontFamily: fontFamily,
+      fontWeight: fontWeight,
+      fontSize: fontSize,
     },
   });
 
+  // Submit form and update state from SettingsProvider
   const onSubmit = (values: z.infer<typeof FormSchema>) => {
     setWordsAtATime(parseInt(values.wordsAtATime));
     setWordsPerMinute(parseInt(values.wordsPerMinute));
