@@ -1,6 +1,6 @@
 # BlinkReader
 
-![blinkreader_banner](https://github.com/kt946/blink-reader/assets/103476893/015df029-e813-4b1a-98a7-31c2a72cafa5)
+![blinkreader_banner](https://github.com/kt946/blink-reader/assets/103476893/066c6a2c-fcee-4f53-a2e9-12acec23cd63, 'BlinkReader')
 
 ## Description
 
@@ -48,32 +48,32 @@ This project includes the following features:
 
 ## Screenshots
 
-![homepage-screenshot](https://github.com/kt946/blink-reader/assets/103476893/627615c2-54fb-45bf-a067-fcc3ccbffd5e, 'Homepage Screenshot')
+![homepage-screenshot](https://github.com/kt946/blink-reader/assets/103476893/57f8d560-8300-46f3-8bbb-bd5800c71ae2, 'Homepage Screenshot')
 <p align="center">The homepage serves as the starting point for users to begin their speed reading journey.</p>
 
 ---
 
-![add-text-form-screenshot](https://github.com/kt946/blink-reader/assets/103476893/225d2c74-ab4d-47aa-861f-ebc210d9765a, 'Add text form screenshot')
+![add-text-form-screenshot](https://github.com/kt946/blink-reader/assets/103476893/2c164a7b-1a77-4f5b-97e2-a0aa0c9840a1, 'Add text form screenshot')
 <p align="center">Easy to use forms allow users to add and update reading content.</p>
 
 ---
 
-![player-interface-light-screenshot](https://github.com/kt946/blink-reader/assets/103476893/55fe5a83-c578-4196-9eab-48f563fee85b, 'Player interface screenshot')
+![player-interface-light-screenshot](https://github.com/kt946/blink-reader/assets/103476893/25a45027-e6f2-4668-a644-b7986ab1e208, 'Player interface screenshot')
 <p align="center">The player interface features intuitive controls for effortless navigation.</p>
 
 ---
 
-![settings-screenshot](https://github.com/kt946/blink-reader/assets/103476893/efe65442-4c75-40b5-b112-b9806ccc40b3, 'Settings screenshot')
+![settings-screenshot](https://github.com/kt946/blink-reader/assets/103476893/4a97f360-0244-4f62-b78c-008fd52ccd90, 'Settings screenshot')
 <p align="center">Use the settings form to customize your reading experience.</p>
 
 ---
 
-![player-interface-dark-screenshot](https://github.com/kt946/blink-reader/assets/103476893/9ae266d2-5d25-4d20-b911-832349cca830, 'Dark mode screenshot')
+![player-interface-dark-screenshot](https://github.com/kt946/blink-reader/assets/103476893/fff4dad7-406f-4c87-a337-3611b5f231ee, 'Dark mode screenshot')
 <p align="center">Enable dark mode for a comfortable and nighttime-friendly reading experience.</p>
 
 ---
 
-![smartphone_mockup](https://github.com/kt946/blink-reader/assets/103476893/bdac8883-8f47-447b-aec8-c3bedadf8a66, 'Smartphone screenshot')
+![smartphone_mockup](https://github.com/kt946/blink-reader/assets/103476893/4efa555a-8f43-4260-8744-0fb967c90d98, 'Smartphone screenshot')
 <p align="center">Mobile responsive design ensures a seamless experience on desktops, tablets, and smartphones.</p>
 
 ## Technologies Used
