@@ -1,27 +1,77 @@
-# React + TypeScript + Vite
+# BlinkReader
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+BlinkReader is a speed reading app designed for efficiency and ease of use. With intuitive navigation controls and customizable settings for words per minute, word group size, and font families, BlinkReader empowers users to enhance their reading speed on their terms. The sleek and responsive user interface, powered by Tailwind CSS, offers a modern design that adapts seamlessly to your preferences. BlinkReader also provides both light and dark modes for optimal readability in any environment. Elevate your reading speed and comprehension effortlessly with BlinkReader.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of Contents
 
-## Expanding the ESLint configuration
+- [Installation](#installation)
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [Technologies Used](#technologies-used)
+- [Contributing](#contributing)
+- [Credits](#credits)
+- [Links](#links)
+- [License](#license)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Installation
 
-- Configure the top-level `parserOptions` property like this:
+To start using BlinkReader, follow these steps:
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+1. To get started, clone the repository or download the zip file.
+2. Install the dependencies by running the following command in the terminal:
+
+```
+npm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+3. Run the development server by running the following command in the terminal:
+
+```
+npm run dev
+```
+
+3. Open [http://localhost:5173/](http://localhost:5173/) with your browser to see the result.
+
+## Features
+
+This project includes the following features:
+
+- Easy to use forms for text input and editing
+- User-friendly controls for play, pause, next, and back
+- Adjustable settings for words per minute, word group size, and font
+- Sleek and responsive user interface using Tailwind CSS
+- Light and dark modes
+
+## Screenshots
+
+## Technologies Used
+
+- [Vite](https://vitejs.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [React](https://reactjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [shadcn/ui](https://ui.shadcn.com/)
+- [Zod](https://zod.dev/)
+- [React Icons](https://react-icons.github.io/react-icons/)
+- [Google Fonts](https://fonts.google.com/)
+- [Affinity Designer](https://affinity.serif.com/en-us/) - Original logo and image designs by [kt946](https://github.com/kt946)
+
+# Contributing
+
+If you'd like to contribute to this project, please fork the repository and submit a pull request.
+
+## Credits
+
+- [kt946](https://github.com/kt946) - Project creator
+
+## Links
+
+- [Link to deployed application]()
+
+- [Link to GitHub repository](https://github.com/kt946/blink-reader)
+
+## License
+
+This project is licensed under the MIT License.

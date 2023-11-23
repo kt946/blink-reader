@@ -82,7 +82,7 @@ const SettingsDialog = () => {
           size="icon"
           className="text-muted-foreground rounded-full"
         >
-          <FaCog className="h-5 w-5" />
+          <FaCog className="h-6 w-6" />
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] dark:bg-zinc-900">
