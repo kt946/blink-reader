@@ -174,24 +174,26 @@ const SettingsDialog = ({
                           <Button
                             variant="outline"
                             role="combobox"
-                            className={cn('w-full justify-between', !field.value && 'text-muted-foreground')}
+                            className={cn('sm:w-[180px] justify-between', !field.value && 'text-muted-foreground')}
                           >
-                            {field.value
-                              ? fontFamilyList.find((font) => font.value === field.value)?.label
-                              : 'Select font'}
+                            <p className="truncate">
+                              {field.value
+                                ? fontFamilyList.find((font) => font.value === field.value)?.label
+                                : 'Select font'}
+                            </p>
                             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                           </Button>
                         </FormControl>
                       </PopoverTrigger>
                       <PopoverContent
                         align="start"
-                        className="w-full sm:w-[376px] p-0"
+                        className="sm:w-[376px] p-0"
                       >
                         <Command>
                           <CommandInput placeholder="Search fonts" />
                           <CommandEmpty>No font found.</CommandEmpty>
                           <CommandGroup>
-                            <ScrollArea className="h-[250px]">
+                            <ScrollArea className="h-40 sm:h-[250px]">
                               {fontFamilyList.map((font) => (
                                 <CommandItem
                                   value={font.label}
@@ -239,7 +241,7 @@ const SettingsDialog = ({
                     >
                       <FormControl>
                         <SelectTrigger className="sm:w-[180px]">
-                          <SelectValue placeholder="300" />
+                          <SelectValue placeholder="Regular" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -281,7 +283,7 @@ const SettingsDialog = ({
                 )}
               />
             </div>
-            <DialogFooter className="flex flex-row sm:justify-end items-center gap-1">
+            <DialogFooter className="flex flex-row sm:justify-end items-center gap-4 sm:gap-2">
               <DialogClose asChild>
                 <Button
                   type="button"

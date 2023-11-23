@@ -117,7 +117,7 @@ const TextareaFormDialog = ({
                 </FormItem>
               )}
             />
-            <DialogFooter className="flex flex-row gap-1">
+            <DialogFooter className="flex flex-row gap-4 sm:gap-2">
               <DialogClose
                 asChild
                 className="max-sm:w-full"

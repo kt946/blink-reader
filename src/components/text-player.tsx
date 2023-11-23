@@ -90,7 +90,7 @@ const TextPlayer = ({ textInput, setTextInput }: TextPlayerProps) => {
   }, [index, isPlaying, wordGroupLength, wordsPerMinute]);
 
   return (
-    <Card className="min-h-[calc(100vh-174px)] md:min-h-[calc(100vh-203px)] flex flex-col justify-between dark:bg-zinc-900 overflow-hidden">
+    <Card className="min-h-[calc(100vh-126px)] md:min-h-[calc(100vh-203px)] max-sm:rounded-none max-sm:border-0 flex flex-col justify-between dark:bg-zinc-900 overflow-hidden">
       <CardHeader className="flex flex-row justify-between items-center">
         <div className="flex gap-6 text-sm sm:text-lg text-muted-foreground">
           <p>
@@ -131,7 +131,7 @@ const TextPlayer = ({ textInput, setTextInput }: TextPlayerProps) => {
         <p className={`text-center p-2 ${fontFamily} ${fontWeight} ${fontSize}`}>{currentText}</p>
       </CardContent>
       {/* Player Controls */}
-      <CardFooter className="flex flex-col justify-center items-center mt-4 gap-8">
+      <CardFooter className="flex flex-col justify-center items-center mt-4  gap-2 sm:gap-4">
         {/* Player Slider */}
         <Slider
           defaultValue={[0]}
@@ -143,11 +143,11 @@ const TextPlayer = ({ textInput, setTextInput }: TextPlayerProps) => {
         />
 
         {/* Player Button Group */}
-        <div className="flex justify-center items-center gap-6 text-zinc-600 dark:text-primary">
+        <div className="flex justify-center items-center gap-2 text-zinc-600 dark:text-primary">
           {/* Back */}
           <Button
             variant="ghost"
-            size="lg"
+            size='icon'
             onClick={() => back()}
           >
             <FaBackward className="h-6 w-6" />
@@ -156,7 +156,7 @@ const TextPlayer = ({ textInput, setTextInput }: TextPlayerProps) => {
             // Pause
             <Button
               variant="ghost"
-              size="lg"
+              size="icon"
               onClick={() => pause()}
             >
               <FaPause className="h-6 w-6" />
@@ -165,7 +165,7 @@ const TextPlayer = ({ textInput, setTextInput }: TextPlayerProps) => {
             // Play
             <Button
               variant="ghost"
-              size="lg"
+              size="icon"
               onClick={() => play()}
             >
               <FaPlay className="h-6 w-6" />
@@ -174,7 +174,7 @@ const TextPlayer = ({ textInput, setTextInput }: TextPlayerProps) => {
           {/* Foward */}
           <Button
             variant="ghost"
-            size="lg"
+            size="icon"
             onClick={() => next()}
           >
             <FaForward className="h-6 w-6" />
