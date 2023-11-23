@@ -62,9 +62,6 @@ const SettingsDialog = ({
   });
 
   const onSubmit = (values: z.infer<typeof FormSchema>) => {
-    // Test values
-    console.log(values);
-
     setWordsAtATime(parseInt(values.wordsAtATime));
     setWordsPerMinute(parseInt(values.wordsPerMinute));
     setFontFamily(values.fontFamily);
@@ -82,7 +79,7 @@ const SettingsDialog = ({
         <Button
           variant="ghost"
           size="icon"
-          className="text-zinc-600 dark:text-primary"
+          className="text-zinc-600 dark:text-primary flex items-center gap-2"
         >
           <FaCog className="h-6 w-6" />
         </Button>
@@ -190,7 +187,10 @@ const SettingsDialog = ({
                         className="sm:w-[376px] p-0"
                       >
                         <Command>
-                          <CommandInput placeholder="Search fonts" />
+                          <CommandInput
+                            placeholder="Search fonts"
+                            className="max-md:hidden"
+                          />
                           <CommandEmpty>No font found.</CommandEmpty>
                           <CommandGroup>
                             <ScrollArea className="h-40 sm:h-[250px]">
@@ -210,7 +210,7 @@ const SettingsDialog = ({
                                     )}
                                   />
                                   <div className="w-full flex overflow-hidden items-center">
-                                    <p className="flex-1">{font.label}</p>
+                                    <p className="flex-1 max-sm:pr-2">{font.label}</p>
                                     <span className={`flex-1 text-start text-xl truncate ${font.value}`}>
                                       {font.label}
                                     </span>
